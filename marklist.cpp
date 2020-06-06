@@ -11,7 +11,6 @@ void Execute();
 void history(int n, char** arr);
 void manage(int n);
 void banner();
-void login();
 
 struct students_details{
 		string name;
@@ -209,42 +208,4 @@ void manage(int n)
 		system("rm .report_history > /dev/null");
 		cout << "\n Logs Successfully Deleted " << endl;
 	}
-}
-
-void login()
-{
-	string uname,pass,format,inf,tinf,crypt;
-	cout << "\n Enter username : ";
-	cin >> uname;
-	cout << "\n Enter password : ";
-	cin >> pass;
-	format.append(uname);
-	format.append(",");
-	format.append(pass);
-	crypt.append("echo \"");
-	crypt.append(format);
-	crypt.append("\" | sha1sum > tmp");
-	const char *command = crypt.c_str();
-	system(command);
-	ifstream inFile("hash");
-	ifstream tFile("tmp");
-	if(!inFile)
-		cout << "\n Error \n";
-	else
-	{
-		while(inFile)
-		{
-			getline(inFile, inf);
-			getline(tFile, tinf);
-			if(tinf == inf)
-			{
-				cout << "\n Success " << endl;
-				break;
-			}
-		}
-		inFile.close();
-		tFile.close();
-		system("rm tmp");
-	}
-
 }
