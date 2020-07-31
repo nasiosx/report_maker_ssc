@@ -146,13 +146,14 @@ void Execute()
 	cout << "\n\n\t\t\t\t STUDENTS MARKLIST SSC 2020 \t\t\n";
 	cout << "\n\t\t Enter the number of reports : ";
 	cin >> numberOfreports;
+	cin.ignore();
 	for(int i=0; i < numberOfreports; i++) // Loop till i is not equal to numberOfreports
 	{
 		cout << "\n\t\t REPORT CARD " << i+1 << " :- " << std::endl;
 		cout << "\t\t ----------------------------- \n";
 		do{
 			cout << "\t\t Enter the name of the student : ";
-			cin >> ssc[i].name; // Accessing members of structure students_details
+			getline(cin, ssc[i].name); // Accessing members of structure students_details
 			if(check(ssc[i].name))
 				cout << "\n\t\t Name cannot contain numbers , Please enter the name again in  correct format " << std::endl;
 		}while(check(ssc[i].name));
